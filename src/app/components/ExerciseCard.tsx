@@ -9,6 +9,7 @@ interface ExerciseCardProps {
     name: string;
     sets: string;
     weight?: number;
+     image?: string;
   };
   imageUrl: string;
   onWeightChange: (exerciseId: string, weight: number) => void;
@@ -20,7 +21,6 @@ export function ExerciseCard({ exercise, imageUrl, onWeightChange }: ExerciseCar
   const [showRestTimer, setShowRestTimer] = useState(false);
   const [showExerciseTimer, setShowExerciseTimer] = useState(false);
 
-  // Extract seconds from sets if it's a timed exercise (e.g., "3x30 seg")
   const extractSeconds = (sets: string): number | null => {
     const match = sets.match(/(\d+)\s*seg/i);
     return match ? parseInt(match[1]) : null;

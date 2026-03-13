@@ -6,14 +6,6 @@ import { RunningCard } from '../components/RunningCard';
 import { workoutRoutines } from '../data/workoutData';
 import { ArrowLeft, Info } from 'lucide-react';
 
-const EXERCISE_IMAGES = [
-  'https://images.unsplash.com/photo-1758875568447-aa45a5d3b351?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmaXRuZXNzJTIwdHJhaW5pbmclMjBsZWdzJTIwc3F1YXRzfGVufDF8fHx8MTc3MzM0NzYxMXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-  'https://images.unsplash.com/photo-1683587023194-a24e5b6549b0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmaXRuZXNzJTIwZ3ltJTIwYmFjayUyMGV4ZXJjaXNlfGVufDF8fHx8MTc3MzM0NzYxMXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-  'https://images.unsplash.com/photo-1585834830884-392089dfd9f6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMGd5bSUyMGdsdXRlcyUyMGV4ZXJjaXNlfGVufDF8fHx8MTc3MzM0NzYxNHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-  'https://images.unsplash.com/photo-1758520705368-bbd8830dda35?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmaXRuZXNzJTIwY2hlc3QlMjBwcmVzcyUyMHdvcmtvdXR8ZW58MXx8fHwxNzczMzQ3NjEyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-  'https://images.unsplash.com/photo-1609899517237-77d357b047cf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMGd5bSUyMGR1bWJiZWxsJTIwd29ya291dHxlbnwxfHx8fDE3NzMzNDc2MTB8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-];
-
 export function WorkoutWeek() {
   const { routineId } = useParams<{ routineId: string }>();
   const navigate = useNavigate();
@@ -86,7 +78,6 @@ export function WorkoutWeek() {
           <h1 className="text-3xl md:text-4xl font-bold text-[#333333] mb-2">
             {routine.name}
           </h1>
-          <p className="text-gray-600">{routine.description}</p>
         </div>
 
         {/* Tabs */}
@@ -122,14 +113,14 @@ export function WorkoutWeek() {
 
                 {/* Exercise Cards Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {day.exercises.map((exercise, index) => (
+                 {day.exercises.map((exercise) => (
                     <ExerciseCard
                       key={exercise.id}
                       exercise={{
                         ...exercise,
                         weight: exerciseWeights[exercise.id] || exercise.weight,
                       }}
-                      imageUrl={EXERCISE_IMAGES[index % EXERCISE_IMAGES.length]}
+                      imageUrl={exercise.image}
                       onWeightChange={handleWeightChange}
                     />
                   ))}
